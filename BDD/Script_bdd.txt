@@ -1,0 +1,82 @@
+CREATE TABLE user_pro(
+   id_user_pro INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   name VARCHAR(50),
+   surname VARCHAR(50),
+);
+
+CREATE TABLE AUTHOR(
+   id_author INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   biography VARCHAR(500),
+   id_user_pro INT NOT NULL,
+   UNIQUE(id_user_pro),
+   FOREIGN KEY(id_user_pro) REFERENCES user_pro(id_user_pro)
+);
+
+CREATE TABLE JURY(
+   id_jury INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   description VARCHAR(50),
+   president BOOLEAN NOT NULL,
+   password VARCHAR(50),
+   id_user_pro INT NOT NULL,
+   UNIQUE(id_user_pro),
+   FOREIGN KEY(id_user_pro) REFERENCES user_pro(id_user_pro)
+);
+
+CREATE TABLE EDITOR(
+   id_editor INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   nationality VARCHAR(50),
+   id_user_pro INT NOT NULL,
+   UNIQUE(id_user_pro),
+   FOREIGN KEY(id_user_pro) REFERENCES user_pro(id_user_pro)
+);
+
+CREATE TABLE SELECTION(
+   id_selection INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   name_selection VARCHAR(50) NOT NULL,
+   date_selection DATE NOT NULL,
+);
+
+CREATE TABLE BOOK(
+   id_book INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   title VARCHAR(30) NOT NULL,
+   ISBN VARCHAR(50) NOT NULL,
+   summary VARCHAR(100),
+   nbr_de_pages VARCHAR(50),
+   language_ VARCHAR(50),
+   price DECIMAL(10,2),
+   character_ VARCHAR(50),
+   date_of_publication DATE NOT NULL,
+   id_editor INT NOT NULL,
+   id_author INT NOT NULL,
+   FOREIGN KEY(id_editor) REFERENCES EDITor(id_editor),
+   FOREIGN KEY(id_author) REFERENCES AUTHOR(id_author)
+);
+
+CREATE TABLE select_(
+   id_book INT,
+   id_selection INT,
+   PRIMARY KEY(id_book, id_selection),
+   FOREIGN KEY(id_book) REFERENCES BOOK(id_book),
+   FOREIGN KEY(id_selection) REFERENCES SELECTION(id_selection)
+);
+
+CREATE TABLE VOTER(
+   id_jury INT,
+   id_selection INT,
+   nbr_of_yes INT NOT NULL,
+   nbr_of_no INT NOT NULL,
+   PRIMARY KEY(id_jury, id_selection),
+   FOREIGN KEY(id_jury) REFERENCES JURY(id_jury),
+   FOREIGN KEY(id_selection) REFERENCES SELECTION(id_selection)
+);
+
+
+
+
+identifiant : admin_goncourt
+
+mot de passe : apRqLOZ!S)fZekb[
+
+
+
+CREATE USER 'admin_goncourt'@'%' IDENTIFIED VIA mysql_native_password USING '***';GRANT USAGE ON *.* TO 'admin_goncourt'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `goncourt`.* TO 'admin_goncourt'@'%';
