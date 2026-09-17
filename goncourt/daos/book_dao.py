@@ -60,6 +60,7 @@ class BookDao(Dao[Book]):
 			with Dao.connection.cursor() as cursor:
 				sql = """
                     INSERT INTO book (
+						title,
                         ISBN,
                         summary,
                         nbr_de_pages,
@@ -70,7 +71,7 @@ class BookDao(Dao[Book]):
                         id_editor,
                         id_author
                     )
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """
 				cursor.execute(sql, (
 					book.title,
@@ -85,9 +86,9 @@ class BookDao(Dao[Book]):
 					book.id_author
 				))
 
-			book.id_book = cursor.lastrowid
+			book.id = cursor.lastrowid
 			Dao.connection.commit()
-			return book.id_book
+			return book.id
 		except Exception:
 			Dao.connection.rollback()
 			raise
@@ -133,7 +134,7 @@ class BookDao(Dao[Book]):
 		try:
 			with Dao.connection.cursor() as cursor:
 				sql = "DELETE FROM book WHERE id_book = %s"
-				cursor.execute(sql, (book.id_book,))
+				cursor.execute(sql, (book.id,))
 
 			Dao.connection.commit()
 			return cursor.rowcount > 0
