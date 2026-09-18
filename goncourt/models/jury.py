@@ -14,7 +14,11 @@ class Jury:
 
     def __str__(self) -> str:
         return (
-            f"Jury(id_jury={self.id_jury}, description='{self.description}', "
-            f"president={self.president}, password='{self.password}', "
-            f"id_user_pro={self.id_user_pro}, name='{self.name}', surname='{self.surname}')"
+            f"Jury(id_jury={self.id_jury}, "
+            f"description='{self.description}', "
+            f"president={self.president}," 
+            f"password='{self.password}', "
+            f"id_user_pro={self.id_user_pro}, "
+            f"name='{self.name}',"
+            f"surname='{self.surname}')"
         )

@@ -17,13 +17,13 @@ def main() -> None:
 |2 | affiche la liste des livres           |
 |3 | ajouter un livre                      |
 |4 | supprimer un livre                    |
-|5 | afficher les info d'un jury           |
-|6 |        |
-|7 |  |
-|8 |          |
-|9 |        |
+|5 | afficher les infos d'un jury          |
+|6 | afficher la liste du jury             |
+|7 |                                       |
+|8 |                                       |
+|9 |                                       |
 |0 | Quitter                               |
-+------------------------------------------+
++------------------------------------------+ 
 """)
 
 		choice = input("Choisissez une action : ").strip()
@@ -37,8 +37,8 @@ def main() -> None:
 			Goncourt.delete_book()
 		elif choice == "5":
 			Goncourt.get_jury_by_id(1)
-		#elif choice == "6":
-		
+		elif choice == "6":
+			Goncourt.display_all_jury()
 		#elif choice == "7":
 		
 		#elif choice == "8":

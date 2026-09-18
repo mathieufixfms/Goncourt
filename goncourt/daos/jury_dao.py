@@ -1,6 +1,5 @@
-from abc import abstractmethod
 from dataclasses import dataclass
-from typing import Optional
+from typing import List, Optional
 
 from daos.dao import Dao
 from models.jury import Jury
@@ -52,6 +51,39 @@ class JuryDao(Dao[Jury]):
 
         return jury
 
+    def read_all(self) -> List[Jury]:
+        juries: List[Jury] = []
+
+        with Dao.connection.cursor() as cursor:
+            sql = """
+                SELECT
+                    j.id_jury,
+                    j.description,
+                    j.president,
+                    j.password,
+                    j.id_user_pro,
+                    up.name,
+                    up.surname
+                FROM jury j
+                LEFT JOIN user_pro up ON up.id_user_pro = j.id_user_pro
+                ORDER BY j.id_jury
+            """
+            cursor.execute(sql)
+            for record in cursor.fetchall():
+                juries.append(
+                    Jury(
+                        id_jury=record['id_jury'],
+                        description=record['description'],
+                        president=record['president'],
+                        password=record['password'],
+                        id_user_pro=record['id_user_pro'],
+                        name=record.get('name'),
+                        surname=record.get('surname')
+                    )
+                )
+
+        return juries
+
     def create(self, obj: Jury) -> int:
         raise NotImplementedError
 
@@ -60,5 +92,3 @@ class JuryDao(Dao[Jury]):
 
     def delete(self, obj: Jury) -> bool:
         raise NotImplementedError
-
-             

@@ -17,10 +17,6 @@ class Goncourt:
 	# 	for book in self.books:
 	# 		print(f"liste des livres : {book}")
 		
-	# @staticmethod
-	# def get_book_by_id(id_book: int):
-	# 	book_dao : BookDao = BookDao() 
-	# 	return book_dao.read(id_book)
 
 	@staticmethod
 	def get_book_by_id(id_book: int) -> None:
@@ -81,6 +77,20 @@ class Goncourt:
 			print("Livre supprime.")
 		else:
 			print("Le livre n'a pas pu etre supprime.")
+
+	@staticmethod
+	def display_all_jury() -> List[str]:
+		jury_dao: JuryDao = JuryDao()
+		juries = jury_dao.read_all()
+		all_names: List[str] = []
+
+		for jury in juries:
+			full_name = f"{jury.name or ''} {jury.surname or ''}".strip()
+			if full_name:
+				all_names.append(full_name)
+				print(full_name)
+
+		return all_names
 
 	@staticmethod
 	def get_jury_by_id(id_jury: int) -> None:
