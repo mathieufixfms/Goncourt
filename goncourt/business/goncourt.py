@@ -11,14 +11,14 @@ class Goncourt:
 	books: List[Book] = field(default_factory=list, init=False)
 	
 		
-	def display_book_list(self):
-		for book in self.books:
-			print(f"liste des livres : {book}")
+	# def display_book_list(self):
+	# 	for book in self.books:
+	# 		print(f"liste des livres : {book}")
 		
 	@staticmethod
 	def get_book_by_id(id_book : int):
 		book_dao = BookDao()
-		return book_dao.read(id_book)
+		return book_dao.read_all(id_book)
 
 	@staticmethod
 	def display_book_by_id(id_book: int) -> None:

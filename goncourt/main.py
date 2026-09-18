@@ -2,6 +2,7 @@ from business.goncourt import Goncourt
 
 
 def main() -> None:
+    
 	"""Programme principal."""
 	print("""\
 """)
@@ -16,7 +17,7 @@ def main() -> None:
 |2 | affiche la liste des livres           |
 |3 | ajouter un livre                      |
 |4 | supprimer un livre                    |
-|5 |                      |
+|5 |                    |
 |6 |        |
 |7 |  |
 |8 |          |
@@ -35,7 +36,7 @@ def main() -> None:
 		elif choice == "4":
 			Goncourt.delete_book()
 		#elif choice == "5":
-		
+			
 		#elif choice == "6":
 		
 		#elif choice == "7":
