@@ -19,7 +19,7 @@ def main() -> None:
 |4 | supprimer un livre                    |
 |5 | afficher les infos d'un jury          |
 |6 | afficher la liste du jury             |
-|7 |                                       |
+|7 | afficher une selection                |
 |8 |                                       |
 |9 |                                       |
 |0 | Quitter                               |
@@ -39,8 +39,8 @@ def main() -> None:
 			Goncourt.get_jury_by_id(1)
 		elif choice == "6":
 			Goncourt.display_all_jury()
-		#elif choice == "7":
-		
+		elif choice == "7":
+			Goncourt.get_selection_by_id(1)
 		#elif choice == "8":
 		
 		#elif choice == "9":

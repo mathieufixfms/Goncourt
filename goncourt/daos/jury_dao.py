@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List,Optional
 
 from daos.dao import Dao
 from models.jury import Jury
