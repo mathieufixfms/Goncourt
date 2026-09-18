@@ -14,12 +14,9 @@ from models.jury import Jury
 class Goncourt:
 	books: List[Book] = field(default_factory=list, init=False)
 	juries: List[Jury] = field(default_factory=list, init=False)
-
-	# def display_book_list(self):
-	# 	for book in self.books:
-	# 		print(f"liste des livres : {book}")
-		
-
+	
+	"""Class book
+	"""
 	@staticmethod
 	def get_book_by_id(id_book: int) -> None:
 		book_dao: BookDao = BookDao()  

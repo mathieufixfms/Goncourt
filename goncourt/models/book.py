@@ -32,4 +32,14 @@ class Book:
         
     def __str__(self) -> str:
         
-        return f"Book(id={self.id}, title='{self.title}', ISBN='{self.ISBN}', summary='{self.summary}', nbr_de_pages='{self.nbr_de_pages}', language_='{self.language_}', price={self.price}, character_='{self.character_}', date_of_publication={self.date_of_publication}, id_editor={self.id_editor}, id_author={self.id_author})"
+        return (f"Book(id={self.id}, "
+				f"title='{self.title}', "
+				f"ISBN='{self.ISBN}', "
+				f"summary='{self.summary}', "
+				f"nbr_de_pages='{self.nbr_de_pages}', "
+				f"language_='{self.language_}', "
+				f"price={self.price}, "
+				f"character_='{self.character_}', "
+				f"date_of_publication={self.date_of_publication}, "
+				f"id_editor={self.id_editor}, "
+				f"id_author={self.id_author})")

@@ -26,7 +26,7 @@ def main() -> None:
 +------------------------------------------+ 
 """)
 
-		choice = input("Choisissez une action : ").strip()
+		choice = input("Choisissez un numéro dans le menu : ").strip()
 		if choice == "1":
 			Goncourt.get_book_by_id(18)
 		elif choice == "2":
