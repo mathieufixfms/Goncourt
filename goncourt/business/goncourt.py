@@ -4,6 +4,7 @@ from typing import List
 
 from daos.book_dao import BookDao
 from daos.jury_dao import JuryDao
+from daos.select_dao import SelectDao
 from daos.selection_dao import SelectionDao
 from models.book import Book
 from models.jury import Jury
@@ -116,3 +117,19 @@ class Goncourt:
 			return
 		print(f"Nom de la sélection : {selection.name_selection}")
 		print(f"Date de la sélection : {selection.date_selection}")
+  
+  
+		"""Class Select
+		"""
+
+	@staticmethod
+	def display_select_by_selection_id(id_selection: int) -> None:
+		select_dao: SelectDao = SelectDao()
+		selects = select_dao.read_all_by_selection_id(id_selection)
+		if not selects:
+			print(f"Aucun livre trouvé pour la sélection avec l'identifiant {id_selection}.")
+			return
+
+		print(f"Livres pour la {id_selection} sélection    :")
+		for select in selects:
+			print(f"- {select.title}")
