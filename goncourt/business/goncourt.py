@@ -3,26 +3,29 @@ from datetime import datetime
 from typing import List
 
 from daos.book_dao import BookDao
+from daos.jury_dao import JuryDao
 from models.book import Book
+from models.jury import Jury
 
 
 @dataclass
 class Goncourt:
 	books: List[Book] = field(default_factory=list, init=False)
-	
-		
+	juries: List[Jury] = field(default_factory=list, init=False)
+
 	# def display_book_list(self):
 	# 	for book in self.books:
 	# 		print(f"liste des livres : {book}")
 		
-	@staticmethod
-	def get_book_by_id(id_book : int):
-		book_dao = BookDao()
-		return book_dao.read_all(id_book)
+	# @staticmethod
+	# def get_book_by_id(id_book: int):
+	# 	book_dao : BookDao = BookDao() 
+	# 	return book_dao.read(id_book)
 
 	@staticmethod
-	def display_book_by_id(id_book: int) -> None:
-		book = Goncourt.get_book_by_id(id_book)
+	def get_book_by_id(id_book: int) -> None:
+		book_dao: BookDao = BookDao()  
+		book = book_dao.read(id_book)
 		if book is None:
 			print(f"Aucun livre trouve avec l'identifiant {id_book}.")
 			return
@@ -30,7 +33,7 @@ class Goncourt:
 
 	@staticmethod
 	def display_book_titles() -> None:
-		book_dao = BookDao()
+		book_dao : BookDao = BookDao() # type: ignore
 		for book in book_dao.read_all():
 			print(book.title)
 
@@ -52,18 +55,18 @@ class Goncourt:
 		price = input("Prix (facultatif) : ").strip()
 		book.price = float(price) if price else None
 		book.character_ = input("Personnages (facultatif) : ").strip() or None
-		book.date_of_publication = input("Date de publication (facultatif, format AAAA-MM-JJ) : ").strip() or None
+		book.date_of_publication = input("Date de publication (facultatif, format AAAA-MM-JJ) : ").strip() or None # type: ignore
 		if book.date_of_publication:
-			book.date_of_publication = datetime.strptime(book.date_of_publication, "%Y-%m-%d").date()
-		book_dao = BookDao()
+			book.date_of_publication = datetime.strptime(book.date_of_publication, "%Y-%m-%d").date() # type: ignore
+		book_dao = BookDao() # type: ignore
 		book_dao.create(book)
 		print(f"Livre ajoute avec l'identifiant {book.id}.")
 
 	@staticmethod
 	def delete_book() -> None:
 		id_book = int(input("Identifiant du livre a supprimer : ").strip())
-		book_dao = BookDao()
-		book = book_dao.read(id_book)
+		book_dao = BookDao() # type: ignore
+		book = book_dao.read(id_book) # type: ignore
 
 		if book is None:
 			print(f"Aucun livre trouve avec l'identifiant {id_book}.")
@@ -78,3 +81,13 @@ class Goncourt:
 			print("Livre supprime.")
 		else:
 			print("Le livre n'a pas pu etre supprime.")
+
+	@staticmethod
+	def get_jury_by_id(id_jury: int) -> None:
+		jury_dao: JuryDao = JuryDao()
+		jury = jury_dao.read(id_jury)
+		if jury is None:
+			print(f"Aucun jury trouvé avec l'identifiant {id_jury}.")
+			return
+		print(jury)
+   

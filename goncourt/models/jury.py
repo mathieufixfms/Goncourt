@@ -9,3 +9,12 @@ class Jury:
     president: bool = False
     password: Optional[str] = None
     id_user_pro: int = 0
+    name: Optional[str] = None
+    surname: Optional[str] = None
+
+    def __str__(self) -> str:
+        return (
+            f"Jury(id_jury={self.id_jury}, description='{self.description}', "
+            f"president={self.president}, password='{self.password}', "
+            f"id_user_pro={self.id_user_pro}, name='{self.name}', surname='{self.surname}')"
+        )
